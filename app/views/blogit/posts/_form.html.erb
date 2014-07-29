@@ -18,6 +18,11 @@
     <% end %>
 
     <%= field do %>
+      <%= f.label :published_at, t(:post_date, scope: 'blogit.posts') %>
+      <%= f.date_field :published_at, scope: 'blogit.posts' %>
+    <% end %>
+
+    <%= field do %>
       <%= f.text_area :body, placeholder: t(:write_something_here, scope: 'blogit.posts') %>
     <% end %>
 
