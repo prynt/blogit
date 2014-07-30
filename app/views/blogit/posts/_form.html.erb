@@ -23,7 +23,28 @@
     <% end %>
 
     <%= field do %>
-      <label>Format using <a href="http://daringfireball.net/projects/markdown/basics", target="_blank">Markdown</a>.</label>
+      <% content_for :javascripts do %>
+        <script type="text/javascript" src="//api.filepicker.io/v1/filepicker.js"></script>
+        <script type="text/javascript" charset="utf-8">
+          filepicker.setKey(<%= ENV['FILEPICKER_API_KEY'].to_json.html_safe %>);
+          $(document).ready(function () {
+            $('.filepicker_upload').click(function () {
+              filepicker.pickAndStore({ mimetype:"image/*" }, { access: 'public' }, function (files) {
+                $.each(files, function (i, file) {
+                  var imageMarkdown = "![" + file.filename + "](" + file.url + ")";
+                  $('#post_body').val(function (i, currentValue) {
+                    return imageMarkdown + "\n\n" + currentValue;
+                  });
+                });
+              });
+            });
+          });
+        </script>
+      <% end %>
+      <label>
+        Format using <a href="http://daringfireball.net/projects/markdown/basics", target="_blank">Markdown</a>.
+        You can also <a href="#" class="filepicker_upload">upload images</a>.
+      </label>
       <%= f.text_area :body, placeholder: t(:write_something_here, scope: 'blogit.posts') %>
     <% end %>
 
