@@ -13,7 +13,7 @@
   <%= render "blogit/posts/post_links", post: post %>
 
   <%# Render info about the person who wrote this post %>
-  <%= render "blogit/posts/blogger_information", post: post %>
+  <%= render "blogit/posts/blogger_information", post: post if blogit_conf.include_blogger_information %>
 
   <%# Render the no. of comments %>
   <%= render "blogit/posts/comments_count",

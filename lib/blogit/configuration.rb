@@ -59,6 +59,8 @@ module Blogit
     # yourself in the templates.
     attr_accessor :include_admin_links
 
+    attr_accessor :include_blogger_information
+
     # The default format for parsing the blog content.
     # Defaults to :markdown
     attr_accessor :default_parser
@@ -131,6 +133,7 @@ module Blogit
       @ajax_comments               = true
       @include_admin_actions       = true
       @include_admin_links         = true
+      @include_blogger_information = true
       @cache_pages                 = false
       @default_parser              = :markdown
       @highlight_code_syntax       = true
