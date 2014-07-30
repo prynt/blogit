@@ -23,6 +23,7 @@
     <% end %>
 
     <%= field do %>
+      <label>Format using <a href="http://daringfireball.net/projects/markdown/basics", target="_blank">Markdown</a>.</label>
       <%= f.text_area :body, placeholder: t(:write_something_here, scope: 'blogit.posts') %>
     <% end %>
 
