@@ -1,0 +1,4 @@
+<%# blog_tag method generates a <footnotes> element, which is invalid %>
+<%= content_tag(:div, class: 'blog_post_footnotes') do %>
+  <%= format_content(post.footnotes) %>
+<% end if post.footnotes %>

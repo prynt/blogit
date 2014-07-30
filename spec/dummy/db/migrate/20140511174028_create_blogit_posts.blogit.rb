@@ -6,6 +6,7 @@ class CreateBlogitPosts < ActiveRecord::Migration
         r.string :title
         r.datetime :published_at
         r.text :body
+        r.text :footnotes
         r.string :state, default: Blogit::configuration.hidden_states.first.to_s
         r.integer :comments_count, default: 0
       end

@@ -84,7 +84,7 @@ module Blogit
 
     def post_paramters
       if params[:post]
-        params.require(:post).permit(:title, :published_at, :body, :tag_list, :state)
+        params.require(:post).permit(:title, :published_at, :body, :footnotes, :tag_list, :state)
       else
         {}
       end
