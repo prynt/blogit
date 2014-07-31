@@ -50,15 +50,15 @@ module Blogit
     end
 
     def new
-      @post = current_blogger.blog_posts.new(post_paramters)
+      @post = blog_posts_scope.new(post_paramters)
     end
 
     def edit
-      @post = current_blogger.blog_posts.find(params[:id])
+      @post = blog_posts_scope.find(params[:id])
     end
 
     def create
-      @post = current_blogger.blog_posts.new(post_paramters)
+      @post = blog_posts_scope.new(post_paramters)
       if @post.save
         redirect_to @post, notice: t(:blog_post_was_successfully_created, scope: 'blogit.posts')
       else
@@ -67,7 +67,7 @@ module Blogit
     end
 
     def update
-      @post = current_blogger.blog_posts.find(params[:id])
+      @post = blog_posts_scope.find(params[:id])
       if @post.update_attributes(post_paramters)
         redirect_to @post, notice: t(:blog_post_was_successfully_updated, 
           scope: 'blogit.posts')
@@ -77,7 +77,7 @@ module Blogit
     end
 
     def destroy
-      @post = current_blogger.blog_posts.find(params[:id])
+      @post = blog_posts_scope.find(params[:id])
       @post.destroy
       redirect_to posts_url, notice: t(:blog_post_was_successfully_destroyed, scope: 'blogit.posts')
     end
@@ -91,6 +91,14 @@ module Blogit
     end
 
     private
+
+    def blog_posts_scope
+      if blogit_conf.author_edits_only
+        current_blogger.blog_posts
+      else
+        Blogit::Post
+      end
+    end
 
     def raise_404
       # Don't include admin actions if include_admin_actions is false
