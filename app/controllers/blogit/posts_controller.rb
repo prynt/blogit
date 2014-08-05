@@ -20,6 +20,7 @@ module Blogit
     end
 
     blogit_authenticate(except: [:index, :show, :tagged])
+    before_filter :load_sidebar_data, only: [:index, :tagged, :archives]
 
     def index
       respond_to do |format|
@@ -27,12 +28,7 @@ module Blogit
           @posts = Post.active.order('created_at DESC')
         }
         format.html do
-          @tags = ActsAsTaggableOn::Tag.all.where("taggings_count > 0")
-          @posts = if is_blogger_logged_in?
-            Post.for_index(params[Kaminari.config.param_name])
-          else
-            Post.active.for_index(params[Kaminari.config.param_name])
-          end
+          @posts = blog_posts_scope.for_index(params[Kaminari.config.param_name])
         end
         format.rss {
           @posts = Post.active.order('created_at DESC')
@@ -41,13 +37,18 @@ module Blogit
     end
 
     def show
-      @post = Post.find(params[:id])
+      @post = blog_posts_scope.find(params[:id])
     end
 
     def tagged
       param_name = params[Kaminari.config.param_name]
-      @posts = Post.for_index(param_name).tagged_with(params[:tag])
-      @tags = ActsAsTaggableOn::Tag.all.where("taggings_count > 0")
+      @posts = blog_posts_scope.for_index(param_name).tagged_with(params[:tag])
+      render :index
+    end
+
+    def archives
+      param_name = params[Kaminari.config.param_name]
+      @posts = blog_posts_scope.for_index(param_name).by_month(params[:month], year: params[:year], field: :published_at)
       render :index
     end
 
@@ -56,7 +57,7 @@ module Blogit
     end
 
     def edit
-      @post = blog_posts_scope.find(params[:id])
+      @post = blog_posts_admin_scope.find(params[:id])
     end
 
     def create
@@ -69,7 +70,7 @@ module Blogit
     end
 
     def update
-      @post = blog_posts_scope.find(params[:id])
+      @post = blog_posts_admin_scope.find(params[:id])
       if @post.update_attributes(post_paramters)
         redirect_to @post, notice: t(:blog_post_was_successfully_updated, 
           scope: 'blogit.posts')
@@ -79,7 +80,7 @@ module Blogit
     end
 
     def destroy
-      @post = blog_posts_scope.find(params[:id])
+      @post = blog_posts_admin_scope.find(params[:id])
       @post.destroy
       redirect_to posts_url, notice: t(:blog_post_was_successfully_destroyed, scope: 'blogit.posts')
     end
@@ -94,12 +95,25 @@ module Blogit
 
     private
 
-    def blog_posts_scope
+    def blog_posts_admin_scope
       if blogit_conf.author_edits_only
         current_blogger.blog_posts
       else
-        Blogit::Post
+        Post
       end
+    end
+
+    def blog_posts_scope
+      if is_blogger_logged_in?
+        Post
+      else
+        Post.active
+      end
+    end
+
+    def load_sidebar_data
+      @tags = ActsAsTaggableOn::Tag.all.where("taggings_count > 0")
+      @posts_by_month = Post.active.group_by { |p| p.published_at.beginning_of_month }
     end
 
     def raise_404

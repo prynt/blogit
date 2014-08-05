@@ -3,6 +3,7 @@ module Blogit
 
     require 'acts-as-taggable-on'
     require "kaminari"
+    require 'by_star'
 
     include ::ActionView::Helpers::TextHelper
 
