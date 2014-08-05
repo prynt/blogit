@@ -26,13 +26,14 @@ module Blogit
         format.xml {
           @posts = Post.active.order('created_at DESC')
         }
-        format.html {
+        format.html do
+          @tags = ActsAsTaggableOn::Tag.all.where("taggings_count > 0")
           @posts = if is_blogger_logged_in?
-                    Post.for_index(params[Kaminari.config.param_name])
-                  else
-                    Post.active.for_index(params[Kaminari.config.param_name])
-                  end
-        }
+            Post.for_index(params[Kaminari.config.param_name])
+          else
+            Post.active.for_index(params[Kaminari.config.param_name])
+          end
+        end
         format.rss {
           @posts = Post.active.order('created_at DESC')
         }
@@ -46,6 +47,7 @@ module Blogit
     def tagged
       param_name = params[Kaminari.config.param_name]
       @posts = Post.for_index(param_name).tagged_with(params[:tag])
+      @tags = ActsAsTaggableOn::Tag.all.where("taggings_count > 0")
       render :index
     end
 

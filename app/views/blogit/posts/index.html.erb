@@ -2,6 +2,15 @@
   <%= link_to t(:new_blog_post, scope: 'blogit.posts'), new_post_path %>
 <% end %>
 
+<nav>
+  <h2>Category</h2>
+  <ul>
+    <% @tags.each do |tag| %>
+      <li><%= link_to tag.name, tagged_blog_posts_path(tag.name) %></li>
+    <% end %>
+  </ul>
+</nav>
+
 <% if @posts.any? %>
 
   <%= render partial: "blogit/posts/post",
