@@ -19,7 +19,7 @@ module Blogit
       before_filter :raise_404, except: [:index, :show]
     end
 
-    blogit_authenticate(except: [:index, :show, :tagged])
+    blogit_authenticate(except: [:index, :show, :tagged, :archives])
     before_filter :load_sidebar_data, only: [:index, :tagged, :archives]
 
     def index
