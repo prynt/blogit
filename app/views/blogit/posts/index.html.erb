@@ -2,26 +2,7 @@
   <%= link_to t(:new_blog_post, scope: 'blogit.posts'), new_post_path %>
 <% end %>
 
-<div id="sidebar">
-  <nav>
-    <h2>Archive</h2>
-    <ul>
-      <% @posts_by_month.each do |month, posts| %>
-        <li><%= link_to month.strftime('%B %Y'), blog_posts_archives_path(month.year, month.month) %></li>
-      <% end %>
-    </ul>
-
-    <h2>Category</h2>
-    <ul>
-      <% @tags.each do |tag| %>
-        <li><%= link_to tag.name, tagged_blog_posts_path(tag.name) %></li>
-      <% end %>
-    </ul>
-  </nav>
-
-  <%= render 'mailing_list_signup' %>
-
-</div>
+<%= render partial: "blogit/posts/sidebar" %>
 
 <% if @posts.any? %>
 

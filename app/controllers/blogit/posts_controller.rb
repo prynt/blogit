@@ -20,7 +20,7 @@ module Blogit
     end
 
     blogit_authenticate(except: [:index, :show, :tagged, :archives])
-    before_filter :load_sidebar_data, only: [:index, :tagged, :archives]
+    before_filter :load_sidebar_data, only: [:index, :tagged, :archives, :show]
 
     def index
       respond_to do |format|
