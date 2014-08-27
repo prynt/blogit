@@ -1,0 +1,16 @@
+<%= content_tag(:article, id: "blog_post_#{post.id}", class: "blog_post") do %>
+
+  <%# Render the header for this blog post %>
+  <%= render "blogit/posts/post_head", post: post %>
+
+  <%# Render the body of this blog post (as Markdown) %>
+  <%= format_content(post.short_body) %>
+
+  <% if post.short_body != post.body %>
+    <%= link_to 'Read more…', blogit.post_path(post) %>
+  <% end %>
+
+  <%# Render admin links to edit/delete this post %>
+  <%= render "blogit/posts/post_links", post: post %>
+
+<% end %>

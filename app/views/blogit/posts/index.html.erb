@@ -6,8 +6,9 @@
 
 <% if @posts.any? %>
 
-  <%= render partial: "blogit/posts/post",
+  <%= render partial: "blogit/posts/post_preview",
     collection: @posts,
+    as: :post,
     spacer_template: "blog_post_spacer",
     locals: {show_comments_count: (Blogit.configuration.include_comments == :active_records) }  %>
 <% else %>
