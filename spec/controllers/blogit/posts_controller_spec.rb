@@ -85,7 +85,7 @@ describe Blogit::PostsController do
 
     it "should load all posts in reverse date order" do
       Blogit::Post.stubs(:active).returns(posts)
-      Blogit::Post.active.expects(:order).with('created_at DESC').returns(posts)
+      Blogit::Post.active.expects(:order).with('published_at DESC').returns(posts)
       do_get
       assigns(:posts).should == posts
     end

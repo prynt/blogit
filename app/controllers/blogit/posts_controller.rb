@@ -25,13 +25,13 @@ module Blogit
     def index
       respond_to do |format|
         format.xml {
-          @posts = Post.active.order('created_at DESC')
+          @posts = Post.active.order('published_at DESC')
         }
         format.html do
           @posts = blog_posts_scope.for_index(params[Kaminari.config.param_name])
         end
         format.rss {
-          @posts = Post.active.order('created_at DESC')
+          @posts = Post.active.order('published_at DESC')
         }
       end
     end
