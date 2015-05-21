@@ -15,6 +15,6 @@
     </ul>
   </nav>
 
-  <%= render 'mailing_list_signup' %>
+  <%= render 'mailing_list_signup' if Blogit.configuration.include_mailing_list_signup %>
 
 </div>

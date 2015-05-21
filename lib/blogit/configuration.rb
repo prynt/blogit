@@ -100,6 +100,8 @@ module Blogit
     # list of states that will hide the posts from the public.
     attr_accessor :hidden_states
 
+    attr_accessor :include_mailing_list_signup
+
     # list of states for the Post state machine in order or lifecycle, aggregation of hidden_states and active_states
     #attr_accessor :post_states
 
