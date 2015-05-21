@@ -7,12 +7,14 @@
       <% end %>
     </ul>
 
-    <h2>Category</h2>
-    <ul>
-      <% @tags.each do |tag| %>
-        <li><%= link_to tag.name, tagged_blog_posts_path(tag.name) %></li>
-      <% end %>
-    </ul>
+    <% if @tags.present? %>
+      <h2>Category</h2>
+      <ul>
+        <% @tags.each do |tag| %>
+          <li><%= link_to tag.name, tagged_blog_posts_path(tag.name) %></li>
+        <% end %>
+      </ul>
+    <% end %>
   </nav>
 
   <%= render 'mailing_list_signup' if Blogit.configuration.include_mailing_list_signup %>
