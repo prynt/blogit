@@ -22,7 +22,7 @@ en:
       give_your_post_a_title: "Give your post a title"
       write_something_here: "Write something here..."
       footnotes_placeholder: "You can also have footnotes..."
-      post_date: "Post Date"
+      post_date: "Post Date (YYYY-MM-DD)"
       tip_you_can_style_your_post_using: "Tip: you can style your post using %{parser}"
       or: "or"
       cancel: "cancel"
