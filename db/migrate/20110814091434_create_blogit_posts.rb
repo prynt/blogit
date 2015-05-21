@@ -4,7 +4,9 @@ class CreateBlogitPosts < ActiveRecord::Migration
       t.with_options(null: false) do |r|
         r.string :title
         r.text :body
+        r.text :footnotes
         r.string :state, default: Blogit::configuration.hidden_states.first.to_s
+        r.datetime :published_at
         r.integer :comments_count, default: 0
       end
       t.references :blogger, polymorphic: true
