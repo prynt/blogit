@@ -43,12 +43,16 @@ module Blogit
     def tagged
       param_name = params[Kaminari.config.param_name]
       @posts = blog_posts_scope.for_index(param_name).tagged_with(params[:tag])
+
+      @page_title = "Blog Posts | #{params[:tag]}"
       render :index
     end
 
     def archives
       param_name = params[Kaminari.config.param_name]
       @posts = blog_posts_scope.for_index(param_name).by_month(params[:month], year: params[:year], field: :published_at)
+
+      @page_title = "Blog Posts | #{Date.new(params[:year].to_i, params[:month].to_i).strftime('%B %Y')}"
       render :index
     end
 
