@@ -1,6 +1,15 @@
 module Blogit
   module PostsHelper
 
+    def canonical_url_for(post)
+      # "http://#{request.host_with_port}#{request.path.gsub("//","/")}"
+      [
+        request.protocol,
+        ENV['CANONICAL_HOST'] || request.host_with_port,
+        request.path
+      ].join
+    end
+
     # A comments tag corresponding to the comments configuration
     def comments_for(post)
       render(partial: "blogit/posts/#{Blogit.configuration.include_comments}_comments", locals: { post: post, comment: Blogit::Comment.new })

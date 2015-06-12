@@ -19,7 +19,7 @@
     <!-- TWITTER -->
     <a href="https://twitter.com/share" class="twitter-share-button"
         data-lang="<%= I18n.default_locale %>"
-        data-url="http://<%= request.host_with_port %><%= request.path.gsub("//","/") %>"
+        data-url="<%= canonical_url_for(post) %>"
         data-via="<%= Blogit.configuration.twitter_username %>"
         data-text="<%= post.title%>"
         data-count="horizontal">Tweet</a>
@@ -39,7 +39,10 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
-    <div class="fb-share-button" data-href="http://<%= request.host_with_port %><%= request.path.gsub("//","/") %>" data-layout="button_count"></div>
+    <div class="fb-share-button"
+      data-href="<%= canonical_url_for(post) %>"
+      data-layout="button_count">
+    </div>
     <!-- /FACEBOOK SHARE -->
   </div>
 
