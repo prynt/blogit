@@ -13,6 +13,9 @@ module Blogit
     # Twitter username used in the share bar
     attr_reader :twitter_username
 
+    # Facebook App ID used in the share bar and comments
+    attr_accessor :facebook_app_id
+
     # The name of the controller method we'll call to return the current blogger.
     attr_accessor :current_blogger_method
 
@@ -124,6 +127,7 @@ module Blogit
       @disqus_shortname            = ""
       @include_share_bar           = false
       @twitter_username            = ""
+      @facebook_app_id             = ""
       @current_blogger_method      = :current_user
       @blogger_display_name_method = :username
       @datetime_format             = :short

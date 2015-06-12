@@ -14,6 +14,9 @@ Blogit.configure do |config|
   # Twitter username used in the share bar
   # config.twitter_username = ""
 
+  # Facebook App ID used in the share bar and comments
+  # config.facebook_app_id = ""
+
   # The name of the controller method we'll call to return the current blogger.
   # Change this if you use something other than current_user.
   # Eg. current_admin_user (if using ActiveAdmin)
