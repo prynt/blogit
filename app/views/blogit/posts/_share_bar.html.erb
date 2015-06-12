@@ -1,18 +1,13 @@
 <div id="blog_share_bar">
 
-  <div id="google-plus" class="social_button">
-    <!-- GOOGLE +1 -->
-    <g:plusone size="medium"></g:plusone>
-    <script type="text/javascript">
-      window.___gcfg = {lang: '<%= I18n.default_locale %>'};
-
-      (function() {
-        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/plusone.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      })();
-    </script>
-    <!-- /GOOGLE +1 -->
+  <div id="facebook" class="social_button">
+    <!-- FACEBOOK SHARE -->
+    <%= render 'facebook_sdk' %>
+    <div class="fb-share-button"
+      data-href="<%= canonical_url_for(post) %>"
+      data-layout="button_count">
+    </div>
+    <!-- /FACEBOOK SHARE -->
   </div>
 
   <div id="twitter" class="social_button">
@@ -28,14 +23,19 @@
     <!-- /TWITTER -->
   </div>
 
-  <div id="facebook" class="social_button">
-    <!-- FACEBOOK SHARE -->
-    <%= render 'facebook_sdk' %>
-    <div class="fb-share-button"
-      data-href="<%= canonical_url_for(post) %>"
-      data-layout="button_count">
-    </div>
-    <!-- /FACEBOOK SHARE -->
+  <div id="google-plus" class="social_button">
+    <!-- GOOGLE +1 -->
+    <g:plusone size="medium"></g:plusone>
+    <script type="text/javascript">
+      window.___gcfg = {lang: '<%= I18n.default_locale %>'};
+
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+    <!-- /GOOGLE +1 -->
   </div>
 
 </div>
