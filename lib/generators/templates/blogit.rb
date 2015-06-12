@@ -1,7 +1,8 @@
 # These configuration options can be used to customise the behaviour of Blogit
 Blogit.configure do |config|
 
-  # What kind of comments do you want to add to your blog ? (:active_record, :disqus or :no)
+  # What kind of comments do you want to add to your blog?
+  # (:active_record, :disqus, :facebook or :no)
   # config.include_comments = :active_record
 
   # When using disqus comments, what is the shortname of your forum ?

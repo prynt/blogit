@@ -17,8 +17,9 @@
   <%# Render info about the person who wrote this post %>
   <%= render "blogit/posts/blogger_information", post: post if blogit_conf.include_blogger_information %>
 
-  <%# Render the no. of comments %>
+  <%# Render comments %>
   <%= render "blogit/posts/comments_count",
     post: post if defined?(show_comments_count) and show_comments_count %>
+  <%= comments_for @post %>
 
 <% end %>

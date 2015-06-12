@@ -1,7 +1,8 @@
 module Blogit
   class Configuration
 
-    # What kind of comments do you want to add to your blog ? (:active_record, :disqus or :no)
+    # What kind of comments do you want to add to your blog?
+    # (:active_record, :disqus, :facebook or :no)
     attr_accessor :include_comments
 
     # When using disqus comments, what is the shortname of your forum ?
