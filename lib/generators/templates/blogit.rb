@@ -1,6 +1,10 @@
 # These configuration options can be used to customise the behaviour of Blogit
 Blogit.configure do |config|
 
+  # Length of truncated post bodies which are shown on index pages
+  # Defaults to 1500
+  # config.short_body_length_limit = 1500
+
   # What kind of comments do you want to add to your blog?
   # (:active_record, :disqus, :facebook or :no)
   # config.include_comments = :active_record

@@ -49,7 +49,7 @@ module Blogit
     end
     
     def short_body
-      truncate(body, length: 1500, separator: "\n", omission: '', escape: false)
+      truncate(body, length: Blogit.configuration.short_body_length_limit, separator: "\n", omission: '', escape: false)
     end
     
     def comments

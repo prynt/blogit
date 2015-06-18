@@ -1,6 +1,10 @@
 module Blogit
   class Configuration
 
+    # Length of truncated post bodies which are shown on index pages
+    # Defaults to 1500
+    attr_accessor :short_body_length_limit
+
     # What kind of comments do you want to add to your blog?
     # (:active_record, :disqus, :facebook or :no)
     attr_accessor :include_comments
@@ -124,6 +128,7 @@ module Blogit
     HIDDEN_STATES = [:draft, :archive]
 
     def initialize
+      @short_body_length_limit     = 1500
       @include_comments            = :active_record
       @disqus_shortname            = ""
       @include_share_bar           = false
