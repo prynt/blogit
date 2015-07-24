@@ -10,6 +10,10 @@
   <% if publisher = Blogit.configuration.facebook_app_id %>
     <meta property="article:publisher" content="<%= publisher %>" />
   <% end %>
+
+  <% if author = @post.blogger.try(:blog_author_tag) %>
+    <meta property="article:author" content="<%= author %>" />
+  <% end %>
 <% end %>
 
 <%= render partial: "blogit/posts/sidebar" %>
