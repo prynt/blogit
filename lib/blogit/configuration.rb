@@ -1,6 +1,10 @@
 module Blogit
   class Configuration
 
+    # The name of the blog
+    # Defaults to "[Application Name] Blog"
+    attr_accessor :blog_name
+
     # Length of truncated post bodies which are shown on index pages
     # Defaults to 1500
     attr_accessor :short_body_length_limit
@@ -128,6 +132,7 @@ module Blogit
     HIDDEN_STATES = [:draft, :archive]
 
     def initialize
+      @blog_name                   = "#{Rails.application.engine_name.titleize} Blog"
       @short_body_length_limit     = 1500
       @include_comments            = :active_record
       @disqus_shortname            = ""

@@ -1,6 +1,9 @@
 # These configuration options can be used to customise the behaviour of Blogit
 Blogit.configure do |config|
 
+  # Blog name
+  # config.blog_name = "Ponies Blog"
+
   # Length of truncated post bodies which are shown on index pages
   # Defaults to 1500
   # config.short_body_length_limit = 1500

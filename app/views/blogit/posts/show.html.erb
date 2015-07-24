@@ -1,7 +1,7 @@
-<% content_for(:page_title, "Blog | #{@post.title}")%>
+<% content_for(:page_title, "#{Blogit.configuration.blog_name} | #{@post.title}")%>
 
 <% content_for(:head) do %>
-  <meta property="og:title" content="Blog | <%= @post.title %>" />
+  <meta property="og:title" content="<%= "#{Blogit.configuration.blog_name} | #{@post.title}" %>" />
   <meta property="og:description"
     content="<%= truncate(strip_tags(format_content(@post.body)), length: 500, separator: ' ') %>" />
   <meta property="og:type" content="article" />
