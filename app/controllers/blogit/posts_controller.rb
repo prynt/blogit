@@ -118,6 +118,7 @@ module Blogit
     def load_sidebar_data
       @tags = ActsAsTaggableOn::Tag.all.where("taggings_count > 0")
       @posts_by_month = Post.active.group_by { |p| p.published_at.beginning_of_month }
+      @recent_posts = Post.recent
     end
 
     def raise_404

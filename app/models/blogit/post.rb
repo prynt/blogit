@@ -39,6 +39,7 @@ module Blogit
     # @scope class
     scope :for_index, lambda { |page_no = 1| order("published_at DESC").page(page_no) }
     scope :active, lambda { where(state:  Blogit.configuration.active_states ) }
+    scope :recent, lambda { order("published_at DESC").limit(5) }
 
     # ====================
     # = Instance Methods =
