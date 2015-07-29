@@ -13,11 +13,11 @@
       as: :post,
       spacer_template: "blog_post_spacer",
       locals: {show_comments_count: (Blogit.configuration.include_comments == :active_records) }  %>
+
+    <%= render "pagination" if @posts.total_pages > 1 %>
   </section>
 <% else %>
 
   <%= render partial: "blogit/posts/empty" %>
 
 <% end %>
-
-<%= render "pagination" %>
