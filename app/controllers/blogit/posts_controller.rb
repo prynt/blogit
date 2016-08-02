@@ -76,7 +76,7 @@ module Blogit
     def update
       @post = blog_posts_admin_scope.find(params[:id])
       if @post.update_attributes(post_paramters)
-        redirect_to @post, notice: t(:blog_post_was_successfully_updated, 
+        redirect_to @post, notice: t(:blog_post_was_successfully_updated,
           scope: 'blogit.posts')
       else
         render action: "edit"
@@ -116,9 +116,9 @@ module Blogit
     end
 
     def load_sidebar_data
-      @tags = ActsAsTaggableOn::Tag.all.where("taggings_count > 0")
-      @posts_by_month = Post.active.group_by { |p| p.published_at.beginning_of_month }
-      @recent_posts = Post.recent
+      @active_tags = ActsAsTaggableOn::Tag.all.where("taggings_count > 0")
+      @active_posts_by_month = Post.active.group_by { |p| p.published_at.beginning_of_month }
+      @active_recent_posts = Post.active.recent
     end
 
     def raise_404
