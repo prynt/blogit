@@ -1,27 +1,27 @@
 <div id="sidebar">
   <nav>
-    <% if @recent_posts.present? %>
+    <% if @active_recent_posts.present? %>
       <h2>Recent Posts</h2>
       <ul>
-        <% @recent_posts.each do |post| %>
+        <% @active_recent_posts.each do |post| %>
           <li><%= link_to post.title, post_path(post) %></li>
         <% end %>
       </ul>
     <% end %>
 
-    <% if @posts_by_month.present? %>
+    <% if @active_posts_by_month.present? %>
       <h2>Archive</h2>
       <ul>
-        <% @posts_by_month.each do |month, posts| %>
+        <% @active_posts_by_month.each do |month, posts| %>
           <li><%= link_to month.strftime('%B %Y'), blog_posts_archives_path(month.year, month.month) %></li>
         <% end %>
       </ul>
     <% end %>
 
-    <% if @tags.present? %>
+    <% if @active_tags.present? %>
       <h2>Category</h2>
       <ul>
-        <% @tags.each do |tag| %>
+        <% @active_tags.each do |tag| %>
           <li><%= link_to tag.name, tagged_blog_posts_path(tag.name) %></li>
         <% end %>
       </ul>
