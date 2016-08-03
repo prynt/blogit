@@ -117,7 +117,11 @@ module Blogit
 
     def load_sidebar_data
       # Get the tags of published blog posts
-      @active_tags = ActsAsTaggableOn::Tag.joins(:taggings).joins('LEFT join blogit_posts on taggings.taggable_id=blogit_posts.id').where('blogit_posts.state' => 'published')
+      @active_tags = ActsAsTaggableOn::Tag.
+                      joins(:taggings).
+                      joins('LEFT join blogit_posts on taggings.taggable_id=blogit_posts.id').
+                      where('blogit_posts.state' => 'published').
+                      uniq
       @active_posts_by_month = Post.active.group_by { |p| p.published_at.beginning_of_month }
       @active_recent_posts = Post.active.recent
     end
